@@ -1,0 +1,25 @@
+<div class="container-fluid">
+
+
+
+    <button (click)="openAddBook()" *ngIf="!showPlayerForm" class="btn btn-lg btn-outline-primary">Add Book</button>
+
+    <button (click)="openEditBook()" *ngIf="!showPlayerForm" [disabled]="!currentPlayer" class="btn btn-lg btn-outline-primary">Edit Book</button>
+
+    <app-player-form *ngIf="showPlayerForm" (playerFormClose)=" playerFormClose($event)" [player]="currentPlayer"></app-player-form>
+
+    <p>
+        <ngb-alert *ngIf="message" [dismissible]="true">
+            <strong>Warning!</strong> {{message}}
+        </ngb-alert>
+    </p>
+
+    <app-player-row class="card" *ngFor="let b of playerList" [player]="b" (click)='clicked(b)' [class.bg-info]="isSelected(b)" [class.text-white]="isSelected(b)"></app-player-row>
+
+    <app-player-details *ngIf="currentPlayer" [player]="currentPlayer">
+    </app-player-details>
+
+
+
+
+</div>
