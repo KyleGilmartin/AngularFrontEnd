@@ -2,9 +2,9 @@
 
 
 
-    <button (click)="openAddBook()" *ngIf="!showPlayerForm" class="btn btn-lg btn-outline-primary">Add Book</button>
+    <button (click)="openAddBook()" *ngIf="!showPlayerForm" class="btn btn-lg btn-outline-primary">Add Player</button>
 
-    <button (click)="openEditBook()" *ngIf="!showPlayerForm" [disabled]="!currentPlayer" class="btn btn-lg btn-outline-primary">Edit Book</button>
+    <button (click)="openEditBook()" *ngIf="!showPlayerForm" [disabled]="!currentPlayer" class="btn btn-lg btn-outline-primary">Edit Player</button>
 
     <app-player-form *ngIf="showPlayerForm" (playerFormClose)=" playerFormClose($event)" [player]="currentPlayer"></app-player-form>
 
