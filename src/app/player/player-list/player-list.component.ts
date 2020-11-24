@@ -71,12 +71,12 @@ updateBook (isbn: string, player: IPlayer){
 }
 
   addNewBook(newPlayer: IPlayer): void {
-    console.log('adding new book ' + JSON.stringify(newPlayer));
+    console.log('adding new Player ' + JSON.stringify(newPlayer));
     this.playerService.addBook({ team: 'team', ...newPlayer })
       .subscribe({
-        next: book => {
-          console.log(JSON.stringify(book) + ' has been added');
-        this.message = "new book has been added";},
+        next: player => {
+          console.log(JSON.stringify(player) + ' has been added');
+        this.message = "new player has been added";},
         error: (err) => this.message = err
       });
   }
