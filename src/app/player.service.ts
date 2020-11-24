@@ -13,14 +13,14 @@ export class PlayerService {
 
   constructor(private http: HttpClient) { }
 
-  addBook(player: IPlayer): Observable<IPlayer> {
+  addPlayer(player: IPlayer): Observable<IPlayer> {
     return this.http.post<IPlayer>(this.dataUri, player)
       .pipe(
         catchError(this.handleError)
       )
   }
 
-  updateBook(isbn: string, player: IPlayer): Observable<IPlayer> {
+  updatePlayer(isbn: string, player: IPlayer): Observable<IPlayer> {
     console.log('subscribing to update' + isbn);
     let playerURI: string = this.dataUri + '/' + isbn;
     return this.http.put<IPlayer>(playerURI, player)
@@ -29,13 +29,13 @@ export class PlayerService {
       )
   }
 
-  getBooks(): Observable<IPlayer[]> {
+  getPlayer(): Observable<IPlayer[]> {
 
     console.log("get Player called");
 
 
 
-    return this.http.get<IPlayer[]>(`${this.dataUri}?limit=10`)
+    return this.http.get<IPlayer[]>(`${this.dataUri}?limit=15`)
       .pipe(
         catchError(this.handleError)
       )

@@ -20,7 +20,7 @@ export class PlayerListComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.playerService.getBooks().subscribe({
+    this.playerService.getPlayer().subscribe({
       next: (value: IPlayer[]) => this.playerList = value,
       complete: () => console.log('player service finished'),
       error: (mess) => this.message = mess
@@ -30,12 +30,12 @@ export class PlayerListComponent implements OnInit {
   clicked(player: IPlayer): void {
     this.currentPlayer = player;
   }
-  openAddBook(): void {
+  openAddPlayer(): void {
     this.currentPlayer = null;
     this.showPlayerForm = true;
   }
 
-  openEditBook(): void {
+  openEditPlayer(): void {
     this.showPlayerForm = true;
   }
 
@@ -46,16 +46,16 @@ playerFormClose(player: IPlayer): void{
     this.currentPlayer = null;
   }
   else if (this.currentPlayer == null){
-    this.addNewBook(player);
+    this.addNewPlayer(player);
   }
   else {
     console.log('need to update player with id ' + this.currentPlayer.isbn);
-    this.updateBook(this.currentPlayer.isbn, player)
+    this.updatePlayer(this.currentPlayer.isbn, player)
   }
 }
   
-updateBook (isbn: string, player: IPlayer){
-  this.playerService.updateBook(isbn, player)
+updatePlayer (isbn: string, player: IPlayer){
+  this.playerService.updatePlayer(isbn, player)
   .subscribe({
     next: player => this.message = "player has been modified",
     error: (err) => this.message = err
@@ -63,16 +63,16 @@ updateBook (isbn: string, player: IPlayer){
 
 // so the updated list appears
 
-    this.playerService.getBooks().subscribe({
+    this.playerService.getPlayer().subscribe({
       next: (value: IPlayer[]) => this.playerList = value,
       complete: () => console.log('player service finished'),
       error: (mess) => this.message = mess
     })
 }
 
-  addNewBook(newPlayer: IPlayer): void {
+  addNewPlayer(newPlayer: IPlayer): void {
     console.log('adding new Player ' + JSON.stringify(newPlayer));
-    this.playerService.addBook({ team: 'team', ...newPlayer })
+    this.playerService.addPlayer({ team: 'team', ...newPlayer })
       .subscribe({
         next: player => {
           console.log(JSON.stringify(player) + ' has been added');
