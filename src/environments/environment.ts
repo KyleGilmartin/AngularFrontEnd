@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: 'https://localhost:8080', // your server side code
+  facebookAppId: '1234' // the appID of your facebook app
 };
 
 /*

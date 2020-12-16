@@ -1,8 +1,17 @@
-<h1>Premier League Player Stats</h1>
+<h1>
+    Prem App
+</h1>
 
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="user">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active">Home</a>
+        <a class="nav-item nav-link" routerLink="/player" routerLinkActive="active">Players</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav>
 
-<app-player-list></app-player-list>
-
-
-
-<router-outlet></router-outlet>
+<!-- main app container -->
+<div class="container pt-4">
+    <router-outlet></router-outlet>
+</div>
