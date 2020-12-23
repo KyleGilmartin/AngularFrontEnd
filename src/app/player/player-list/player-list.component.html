@@ -6,6 +6,7 @@
 
     <button (click)="openEditPlayer()" *ngIf="!showPlayerForm" [disabled]="!currentPlayer" class="btn btn-lg btn-outline-primary">Edit Player</button>
 
+    <button (click)=" openDeletePlayer()" *ngIf="!showPlayerForm" [disabled]="!currentPlayer" class="btn btn-lg btn-outline-primary">Delete Player</button>
     <app-player-form *ngIf="showPlayerForm" (playerFormClose)=" playerFormClose($event)" [player]="currentPlayer"></app-player-form>
 
     <p>

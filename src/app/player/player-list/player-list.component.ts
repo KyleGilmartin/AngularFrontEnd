@@ -38,6 +38,9 @@ export class PlayerListComponent implements OnInit {
   openEditPlayer(): void {
     this.showPlayerForm = true;
   }
+   openDeletePlayer(): void {
+    this.showPlayerForm = true;
+  }
 
 playerFormClose(player: IPlayer): void{
   this.showPlayerForm = null;
@@ -51,6 +54,22 @@ playerFormClose(player: IPlayer): void{
   else {
     console.log('need to update player with id ' + this.currentPlayer.isbn);
     this.updatePlayer(this.currentPlayer.isbn, player)
+  }
+}
+  
+  
+playerFormClose2(player: IPlayer): void{
+  this.showPlayerForm = null;
+  console.table(player);
+  if (player == null){
+    this.currentPlayer = null;
+  }
+  else if (this.currentPlayer == null){
+    this.addNewPlayer(player);
+  }
+  else {
+    console.log('need to update player with id ' + this.currentPlayer.isbn);
+    this.deletePlayer(this.currentPlayer.isbn, player)
   }
 }
   
@@ -70,6 +89,21 @@ updatePlayer (isbn: string, player: IPlayer){
     })
 }
 
+  deletePlayer (isbn: string, player: IPlayer){
+  this.playerService.updatePlayer(isbn, player)
+  .subscribe({
+    next: player => this.message = "player has been Deleted",
+    error: (err) => this.message = err
+  });
+
+// so the updated list appears
+
+    this.playerService.getPlayer().subscribe({
+      next: (value: IPlayer[]) => this.playerList = value,
+      complete: () => console.log('player service finished'),
+      error: (mess) => this.message = mess
+    })
+}
   addNewPlayer(newPlayer: IPlayer): void {
     console.log('adding new Player ' + JSON.stringify(newPlayer));
     this.playerService.addPlayer({ team: 'team', ...newPlayer })

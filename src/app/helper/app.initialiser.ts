@@ -2,7 +2,7 @@ import { UserService } from '../user.service'
 import { environment } from '../../environments/environment';
 
 export function appInitializer(userService: UserService) {
-    return () => new Promise(resolve => {
+    return () => new Promise<void>(resolve => {
         // wait for facebook sdk to initialize before starting the angular app
         window['fbAsyncInit'] = function () {
             FB.init({
